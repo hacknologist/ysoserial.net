@@ -16,7 +16,7 @@ namespace ysoserial.Generators
 
       public override string AdditionalInfo()
       {
-         return "Loads assembly using XAML. This gadget interprets the command parameter as path to the .cs file that should be compiled as exploit class. Use semicolon to separate the file from additionally required assemblies, e. g., '-c ExploitClass.cs;System.Windows.Forms.dll'";
+         return "Loads assembly using XAML. This gadget interprets the command parameter as path to the .cs file that should be compiled as exploit class. Use a semicolon to separate the file from any additional required assemblies, e.g., '-c ExploitClass.cs;System.Windows.Forms.dll'";
       }
 
       public override string Finders()
@@ -54,7 +54,7 @@ namespace ysoserial.Generators
       public override object Generate(string formatter, InputArgs inputArgs)
       {
          var files = inputArgs.Cmd;
-         byte[] asmData = LocalCodeCompiler.CompileToAsmBytes(files);
+         byte[] asmData = LocalCodeCompiler.GetAsmBytes(files);
          byte[] gzipAsmData = Gzip(asmData);
          string base64GzipAsmData = Convert.ToBase64String(gzipAsmData);
          

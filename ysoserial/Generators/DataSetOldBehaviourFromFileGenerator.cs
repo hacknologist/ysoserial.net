@@ -18,7 +18,7 @@ namespace ysoserial.Generators
     {
         public override string AdditionalInfo()
         {
-            var info = "Another variant of the DataSetOldBehaviour gadget. This gadget interprets the command parameter as path to the .cs file that should be compiled as exploit class. Use semicolon to separate the file from additionally required assemblies, e. g., '-c ExploitClass.cs;System.Windows.Forms.dll'";
+            var info = "Another variant of the DataSetOldBehaviour gadget. This gadget interprets the command parameter as path to the .cs file that should be compiled as exploit class. Use a semicolon to separate the file from any additional required assemblies, e.g., '-c ExploitClass.cs;System.Windows.Forms.dll'";
             return info;
         }
 
@@ -73,7 +73,7 @@ namespace ysoserial.Generators
         public override object Generate(string formatter, InputArgs inputArgs)
         {
             var files = inputArgs.Cmd;
-            byte[] asmData = LocalCodeCompiler.CompileToAsmBytes(files);
+            byte[] asmData = LocalCodeCompiler.GetAsmBytes(files);
             string xmlResourceDict = "";
 
             if (isCompressed)
